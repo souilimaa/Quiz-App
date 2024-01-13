@@ -1,0 +1,43 @@
+/* Style for the entire login container */
+div {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #3498db; /* Blue border color */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for the login form */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Style for input fields */
+  input {
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #3498db; /* Blue border color */
+    border-radius: 4px;
+  }
+  
+  /* Style for the submit button */
+  input[type="submit"] {
+    background-color: #3498db; /* Blue background color */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #2980b9; /* Slightly darker blue on hover */
+  }
+  
+  /* Style for error message */
+  p {
+    color: red;
+    margin-top: 10px;
+  }
+  
