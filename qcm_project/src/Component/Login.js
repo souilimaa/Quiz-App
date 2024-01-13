@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom to handle the redirection
-import '../Login.css';
+import '../css/Login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({

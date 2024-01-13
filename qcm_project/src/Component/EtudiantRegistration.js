@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom to handle redirection
 
-import ('../EtudiantRegistration.css');
+import ('../css/EtudiantRegistration.css');
 
 const EtudiantRegistration = () => {
     const [formData, setFormData] = useState({
