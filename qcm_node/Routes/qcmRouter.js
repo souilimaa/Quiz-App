@@ -1,12 +1,7 @@
 const express=require('express')
-const qcmRouter=express.Router();
-const qcmController=require('../Controllers/qcmController')
-qcmRouter.route('/createQcm')
-.get();
+const router=express.Router();
+const qcmController = require('../Controllers/qcmController'); // Update the path
 
+router.post('/Admin/create-qcm', qcmController.createQCM);
 
-qcmRouter.route('/getQcms')
-.get(qcmController.getQcms)
-
-
-module.exports=qcmRouter;
+module.exports = router;

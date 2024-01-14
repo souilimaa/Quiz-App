@@ -2,9 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require('express-session');
 const cors = require('cors');
+const questionRoutes = require('./Routes/questionRoutes');
 
 const professeurRoutes = require('./Routes/professeurRoutes'); // Import the correct module
 const etudiantRoutes = require('./Routes/etudiantRoutes');
+const matiereRoutes = require('./Routes/matiereRoutes');
+const choicesRoutes = require('./Routes/choicesRoutes');
 
 const qcmRouter=require('./Routes/qcmRouter')
 const app = express();
@@ -32,7 +35,10 @@ dbConnect();
 
 app.use('/', professeurRoutes);
 app.use('/', etudiantRoutes);
-app.use('/QCM',qcmRouter)
+app.use('/QCM',qcmRouter);
+app.use('/matieres', matiereRoutes);
+app.use('/Question', questionRoutes); // Adjust the base path if needed
+app.use('/choices', choicesRoutes);
 
 app.listen(5000, () => {
   console.log(`Server started on port 5000`);

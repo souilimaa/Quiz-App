@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Component/Login';
 import AdminDashboard from './Component/AdminDashboard';
 import UserHome from './Component/UserHome ';
-import EtudiantRegistration from './Component/EtudiantRegistration'
+import AddQuiz from './Component/AddQuiz';
+import EtudiantRegistration from './Component/EtudiantRegistration';
+
 
 function App() {
   return (
@@ -12,10 +14,14 @@ function App() {
         {/* Your navigation here (e.g., <NavBar />) */}
 
         <Routes>
-        <Route path="/Register" element={<EtudiantRegistration />} />
+          <Route path="/Register" element={<EtudiantRegistration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/user-home" element={<UserHome />} />
+          <Route path="/add-quiz" element={<AddQuiz/>} />
+          <Route path="/list-of-quizzes" />
+          <Route path="/logout" />
+           
           {/* Redirect or show a default route */}
           <Route path="/" element={<div>Welcome to the App</div>} />
         </Routes>
