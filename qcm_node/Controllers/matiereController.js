@@ -32,7 +32,7 @@ const createMatiere = async (req, res) => {
   }
 };
 
-exports.getMatieres=(req,res)=>{
+const getMatieres=(req,res)=>{
   Matiere.find({})
   .then(matieres=>{
       res.json({state:"success",data:matieres})
@@ -43,6 +43,7 @@ exports.getMatieres=(req,res)=>{
 }
 
 module.exports = {
+  getMatieres,
   getAllMatieres,
   createMatiere,
 };

@@ -5,8 +5,9 @@ import AdminDashboard from './Component/AdminDashboard';
 import UserHome from './Component/UserHome ';
 import AddQuiz from './Component/AddQuiz';
 import EtudiantRegistration from './Component/EtudiantRegistration';
-
-
+import EtudiantHome from './Component/EtudiantHome';
+import Listquize from './Component/ListQuize'
+import QuizDeatils from './Component/QuizDetails'
 function App() {
   return (
     <Router>
@@ -17,10 +18,13 @@ function App() {
           <Route path="/Register" element={<EtudiantRegistration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/user-home" element={<UserHome />} />
+          <Route path="/user-home" element={<EtudiantHome/>}/>
           <Route path="/add-quiz" element={<AddQuiz/>} />
-          <Route path="/list-of-quizzes" />
+          <Route path="/list-of-quizzes"  element={<Listquize/>}/>
           <Route path="/logout" />
+          <Route path="/qcmdetails/:qcmId" element={<QuizDeatils/>} />
+
+          
            
           {/* Redirect or show a default route */}
           <Route path="/" element={<div>Welcome to the App</div>} />

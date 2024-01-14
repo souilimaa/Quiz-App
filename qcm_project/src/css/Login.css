@@ -14,8 +14,9 @@ body {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 300px;
+  padding: 40px; /* Increased padding */
+  width: 400px; /* Increased width */
+  border: 2px solid #ccc; /* Added border */
 }
 
 h2 {
@@ -26,30 +27,36 @@ h2 {
 form {
   display: flex;
   flex-direction: column;
+  border: 2px solid #007bff; /* Added border around the form */
+  padding: 20px; /* Padding inside the form */
+  border-radius: 8px; /* Rounded corners for the form */
 }
 
 input {
-  margin: 10px 0;
-  padding: 10px;
+  margin:
+  10px 0;
+  padding: 15px; /* Increased padding for input fields */
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-input[type="submit"] {
+  }
+  
+  input[type="submit"] {
   background-color: #007bff;
   color: #fff;
   cursor: pointer;
-}
-
-input[type="submit"]:hover {
+  padding: 15px; /* Increased padding for submit button /
+  font-size: 1.1em; / Larger font size for submit button */
+  }
+  
+  input[type="submit"]:hover {
   background-color: #0056b3;
-}
-
-p {
+  }
+  
+  p {
   text-align: center;
   margin-top: 10px;
-}
-
-a {
+  }
+  
+  a {
   color: #007bff;
-}
+  }
