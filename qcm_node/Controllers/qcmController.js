@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 const QCMModel = require('../models/QCM'); // Make sure the path is correct
+=======
+const mongoose=require('mongoose')
+const QCMModel=require('../models/QCM')
+exports.getQcms=(req,res)=>{
+QCMModel.find({})
+.then((qcms)=>{
+    res.json({state:"success",data:qcms});
+})
+.catch((err)=>{
+    console.log(err)
+    res.json({state:"failed",error:err,qcms:[]})
+})
+>>>>>>> 1211fc79a06866165f963cc7f9dec9b1293b6902
 
 const createQCM = async (req, res) => {
   try {

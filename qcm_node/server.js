@@ -10,6 +10,7 @@ const matiereRoutes = require('./Routes/matiereRoutes');
 const choicesRoutes = require('./Routes/choicesRoutes');
 
 const qcmRouter=require('./Routes/qcmRouter')
+const matiereRouter=require('./Routes/matiereRouter')
 const app = express();
 
 app.use(express.json());
