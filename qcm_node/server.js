@@ -38,6 +38,7 @@ app.use('/', professeurRoutes);
 app.use('/', etudiantRoutes);
 app.use('/QCM',qcmRouter);
 app.use('/matieres', matiereRoutes);
+app.use('/QCM', matiereRoutes);
 app.use('/Question', questionRoutes); // Adjust the base path if needed
 app.use('/choices', choicesRoutes);
 

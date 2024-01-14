@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const Matiere = require('../models/Matiere');
 
 // Get all matieres
@@ -33,20 +32,17 @@ const createMatiere = async (req, res) => {
   }
 };
 
+exports.getMatieres=(req,res)=>{
+  Matiere.find({})
+  .then(matieres=>{
+      res.json({state:"success",data:matieres})
+  })
+  .catch(err=>{
+      res.json({state:"failed",data:[]})
+  })
+}
+
 module.exports = {
   getAllMatieres,
   createMatiere,
 };
-=======
-const matiereModel=require('../models/Matiere');
-
-exports.getMatieres=(req,res)=>{
-    matiereModel.find({})
-    .then(matieres=>{
-        res.json({state:"success",data:matieres})
-    })
-    .catch(err=>{
-        res.json({state:"failed",data:[]})
-    })
-}
->>>>>>> 1211fc79a06866165f963cc7f9dec9b1293b6902
