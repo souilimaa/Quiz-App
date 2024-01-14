@@ -7,6 +7,7 @@ const professeurRoutes = require('./Routes/professeurRoutes'); // Import the cor
 const etudiantRoutes = require('./Routes/etudiantRoutes');
 
 const qcmRouter=require('./Routes/qcmRouter')
+const matiereRouter=require('./Routes/matiereRouter')
 const app = express();
 
 app.use(express.json());
@@ -33,6 +34,7 @@ dbConnect();
 app.use('/', professeurRoutes);
 app.use('/', etudiantRoutes);
 app.use('/QCM',qcmRouter)
+app.use('/QCM',matiereRouter)
 
 app.listen(5000, () => {
   console.log(`Server started on port 5000`);

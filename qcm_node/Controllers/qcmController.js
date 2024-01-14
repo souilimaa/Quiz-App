@@ -2,11 +2,12 @@ const mongoose=require('mongoose')
 const QCMModel=require('../models/QCM')
 exports.getQcms=(req,res)=>{
 QCMModel.find({})
-.then((res)=>{
-    res.json({state:"heyy"})
+.then((qcms)=>{
+    res.json({state:"success",data:qcms});
 })
 .catch((err)=>{
-    res.json({state:"failed",error:err})
+    console.log(err)
+    res.json({state:"failed",error:err,qcms:[]})
 })
 
 

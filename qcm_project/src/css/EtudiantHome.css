@@ -1,0 +1,137 @@
+.header{
+    background-color: #285786;
+    display: flex;
+  
+    
+}
+
+.logo{
+    margin: 10px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+}
+body{
+    margin:0px;
+}
+.title{
+    margin-top: 30px;
+    color:#89e1ff;
+}
+.h{
+    display: flex;
+    justify-content: flex-end;
+    margin: 18px;
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 100%;
+    margin-right: 33px;
+}
+.h div{
+    margin: 10px;
+}
+.sujetInput{
+    height: 28px;
+    width: 235px;
+    border-radius: 5px;
+}
+.sujetInput:focus {
+    outline: none;
+    border: 2px solid #89e1ff;
+  }
+.submitInput{
+    height: 34px;
+    margin-left: 16px;
+    width: 101px;
+    border-color: #89e1ff;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #89e1ff;;
+    font-weight: bold;
+    font-size:14px;
+}
+.submitInput:hover {
+    background-color: #89e1ff;
+    color: #ffffff;
+  }
+
+
+.h select{
+    width: 116px;
+    height: 35px;
+    background-color: transparent;
+    font-weight: bold;
+    color: white;
+    border: none;
+    margin-right: 30px;
+    font-size: 17px;
+}
+select option{
+color: black;
+font: 1em sans-serif;
+}
+
+select:hover{
+    color: #89e1ff;
+}
+.bienvenue{
+    margin-top: 20px;
+    margin-left: 60px;
+    margin-right: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.bienvenue div img{
+    height: 300px;
+    width: 400px;
+}
+.h1{
+    color: grey;
+    font-size: 40px;
+    margin-top: 90px;
+   width: 50%;
+
+}
+.sous{
+    margin-top: 10px;
+    color: black;
+    font-weight: normal;
+    font-size: 18px;
+}
+.line{
+    height: 50px;
+    border:2px solid #89e1ff ;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    
+    width: 500px;
+}
+.selectQuiz{
+   display: flex;
+   justify-content: flex-start;
+   flex-wrap: wrap;
+   
+}
+.qs{
+    color: #285786;
+}
+.Matierecard{
+    width: 100px;
+    height: 100px;
+    background-color:#89BEDD;
+    border:1px solid #89BEDD;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
