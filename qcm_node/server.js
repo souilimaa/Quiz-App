@@ -8,9 +8,9 @@ const professeurRoutes = require('./Routes/professeurRoutes'); // Import the cor
 const etudiantRoutes = require('./Routes/etudiantRoutes');
 const matiereRoutes = require('./Routes/matiereRoutes');
 const choicesRoutes = require('./Routes/choicesRoutes');
-
+const EtudiantAnswer=require('./Routes/EtudiantAnswer')
 const qcmRouter=require('./Routes/qcmRouter')
-const matiereRouter=require('./Routes/matiereRouter')
+
 const app = express();
 
 app.use(express.json());
@@ -41,6 +41,7 @@ app.use('/matieres', matiereRoutes);
 app.use('/QCM', matiereRoutes);
 app.use('/Question', questionRoutes); // Adjust the base path if needed
 app.use('/choices', choicesRoutes);
+app.use('/Answers',EtudiantAnswer)
 
 app.listen(5000, () => {
   console.log(`Server started on port 5000`);

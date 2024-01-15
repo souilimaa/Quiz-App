@@ -98,6 +98,7 @@ const AddQuiz = () => {
         e.preventDefault();
 
         const { professeurId, titre, matiereId, description, duree, nombreQst, choixMultiple } = formData;
+        const { questions} = formData;
 
         try {
             const qcmResponse = await fetch('http://localhost:5000/QCM/Admin/create-qcm', {
@@ -354,32 +355,44 @@ const AddQuiz = () => {
                 </div>
 
                 {formData.questions.map((question, index) => (
-                    <div key={index}>
-                        <label>Question {index + 1}:</label>
-                        <input
-                            type="text"
-                            value={question.ennonce}
-                            onChange={(e) => handleQuestionChange(e, index)}
-                            required
-                        />
-                        {question.choices.map((choice, choiceIndex) => (
-                            <div key={choiceIndex}>
-                                <input
-                                    type="text"
-                                    value={choice.choixEnonce}
-                                    onChange={(e) => handleChoiceChange(e, index, choiceIndex)}
-                                    required
-                                />
-                                <input
-                                    type="checkbox"
-                                    checked={question.correctAnswer === choiceIndex}
-                                    onChange={() => handleCorrectAnswerChange(index, choiceIndex)}
-                                />
-                                Correct
-                            </div>
-                        ))}
-                    </div>
-                ))}
+    <div key={index}>
+        <label>Question {index + 1}:</label>
+        <input
+            type="text"
+            value={question.ennonce}
+            onChange={(e) => handleQuestionChange(e, index)}
+            required
+        />
+        {question.choices.map((choice, choiceIndex) => (
+            <div key={choiceIndex}>
+                <input
+                    type="text"
+                    value={choice.choixEnonce}
+                    onChange={(e) => handleChoiceChange(e, index, choiceIndex)}
+                    required
+                />
+                {formData.choixMultiple ? (
+                    // Render as checkbox for multiple choice
+                    <input
+                        type="checkbox"
+                        checked={question.correctAnswer === choiceIndex}
+                        onChange={() => handleCorrectAnswerChange(index, choiceIndex)}
+                    />
+                ) : (
+                    // Render as radio button for single choice
+                    <input
+                        type="radio"
+                        name={`question-${index}-correct-answer`}
+                        checked={question.correctAnswer === choiceIndex}
+                        onChange={() => handleCorrectAnswerChange(index, choiceIndex)}
+                    />
+                )}
+                Correct
+            </div>
+        ))}
+    </div>
+))}
+
                 <div>
                     <button type="button" onClick={addQuestion}>
                         Add Question

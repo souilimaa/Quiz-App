@@ -16,8 +16,12 @@ const NavbarAdmin = ({ userId }) => {
         <Link to={`/add-quiz?userId=${userId}`}>Add Quiz</Link>
       </div>
       <div className="nav-item">
-        <Link to="/list-of-quizzes">List of Quizzes</Link>
+        <Link to={`/list-of-quizzes?userId=${userId}`}>List of Quizzes</Link>
       </div>
+      <div className="nav-item">
+        <Link to={`/Results`}>Quizzes Results</Link>
+      </div>
+
       <div className="nav-item">
         <span onClick={handleLogout} className="nav-item" >
           Logout

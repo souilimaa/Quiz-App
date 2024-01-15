@@ -1,12 +1,18 @@
 // AdminDashboard.js
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import NavbarAdmin from '../Component/NavbarAdmin';
 
 const AdminDashboard = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const userId = queryParams.get('userId');
+  const storedData = localStorage.getItem('userData');
+  let userId; 
+
+  if (storedData) {
+    const userData = JSON.parse(storedData);
+    userId = userData.userId; 
+    console.log('User ID:', userId);
+  } else {
+    console.log('No user data found in localStorage');
+  }
 
   return (
     <div>

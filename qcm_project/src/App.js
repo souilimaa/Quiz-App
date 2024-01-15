@@ -8,6 +8,7 @@ import EtudiantRegistration from './Component/EtudiantRegistration';
 import EtudiantHome from './Component/EtudiantHome';
 import Listquize from './Component/ListQuize'
 import QcmDetails from './Component/QcmDetails'
+import Results from './Component/Results'
 function App() {
   return (
     <Router>
@@ -21,6 +22,9 @@ function App() {
           <Route path="/list-of-quizzes"  element={<Listquize/>}/>
           <Route path="/logout" />
           <Route path="/qcmdetails/:qcmId" element={<QcmDetails/>} />
+          <Route path="/Results" element={<Results/>} />
+
+          
 
           
            

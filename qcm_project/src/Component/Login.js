@@ -36,8 +36,6 @@ const Login = () => {
       console.log("Response Data: ", responseData); // Log to check the response
       setUserId(responseData.userId);
       
-
-      // Save user data to localStorage
       localStorage.setItem('userData', JSON.stringify(responseData));
     } catch (error) {
       console.error(error.message);
@@ -45,22 +43,17 @@ const Login = () => {
     }
   };
 
-  // Use useEffect to handle redirection after state update
   useEffect(() => {
-    // Redirect only after successful login, not on component mount
     if (userId) {
       const storedData = localStorage.getItem('userData');
       if (storedData) {
         const userData = JSON.parse(storedData);
-        if (userData && userData.userId) {
-          const redirectUrl = userData.userType === 'Professeur' ? '/admin-dashboard' : '/user-home';
-          window.location.href = `${redirectUrl}?userId=${userData.userId}`;
-        }
+        const redirectUrl = userData.userType === 'Professeur' ? '/admin-dashboard' : '/user-home';
+        window.location.href = `${redirectUrl}?userId=${userData.userId}`;
       }
     }
   }, [userId]);
   
-
 
   return (
     <div className="login-container">

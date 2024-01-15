@@ -71,11 +71,18 @@ const QcmDetails = () => {
 
 
   const deleteQuiz = async () => {
-    // API call to delete the quiz
-    // await fetch(`http://your-api-endpoint/qcm/${qcmId}`, { method: 'DELETE' });
-
-    console.log('Quiz deleted');
-    
+    try {
+      const response = await fetch(`http://localhost:5000/QCM/${qcmId}`, { method: 'DELETE' });
+      if (!response.ok) {
+        throw new Error(`Failed to delete QCM: HTTP status ${response.status}`);
+      }
+      console.log('Quiz deleted successfully');
+      // Optionally, redirect or update the state to reflect the deletion
+      setQcmDetails(null);
+      setQuestions([]); 
+    } catch (error) {
+      console.error('Error deleting the quiz:', error);
+    }
   };
 
   const updateQuiz = () => {

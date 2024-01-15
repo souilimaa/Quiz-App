@@ -1,5 +1,7 @@
-const mongoose=require('mongoose')
+ const mongoose=require('mongoose')
 const QCMModel=require('../models/QCM')
+const QuestionModel = require('../models/Question');
+const ChoixModel = require('../models/Choix');
 
 const createQCM = async (req, res) => {
   try {
@@ -69,9 +71,28 @@ const getQcmById = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+const deleteQCM = async (req, res) => {
+  try {
+      const qcmId = req.params.qcmId;
+      
+      // Delete Choices linked to Questions of this QCM
+      await ChoixModel.deleteMany({ idQuestion: { $in: (await QuestionModel.find({ idQcm: qcmId })).map(q => q._id) } });
+
+      // Delete Questions linked to this QCM
+      await QuestionModel.deleteMany({ idQcm: qcmId });
+
+      // Delete the QCM
+      await QCMModel.findByIdAndDelete(qcmId);
+
+      res.status(200).send({ message: 'QCM and related data deleted successfully' });
+  } catch (error) {
+      res.status(500).send({ message: error.message });
+  }
+};
 
 
 module.exports = {
+  deleteQCM,
   createQCM,
   getQcms,
   getQcmById,
