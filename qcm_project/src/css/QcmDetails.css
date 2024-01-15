@@ -1,0 +1,112 @@
+/* QcmDetails.css */
+div {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #555;
+    margin-bottom: 0.5em;
+  }
+  
+  h3 {
+    color: #666;
+    margin-top: 1em;
+  }
+  
+  p {
+    color: #444;
+    line-height: 1.6;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 0.5em;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  li ul {
+    margin-top: 10px;
+  }
+  
+  li ul li {
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  li ul li:hover {
+    background-color: #eee;
+  }
+  
+  /* Loading text style */
+  .loading {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+  /* QcmDetails.css */
+/* ... (your existing styles) */
+
+/* QcmDetails.css */
+/* ... (your existing styles) */
+
+/* QcmDetails.css */
+/* ... (your existing styles) ... */
+
+.delete-button {
+  background-color: #e74c3c; /* red color */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  float: right; /* aligns the button to the right */
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* darker shade of red for hover effect */
+}
+
+/* Reset float */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/* QcmDetails.css */
+/* ... (your existing styles) ... */
+
+.update-button {
+  background-color: #3498db; /* blue color */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  float: right; /* aligns the button to the right */
+}
+
+.update-button:hover {
+  background-color: #2980b9; /* darker shade of blue for hover effect */
+}
+
+/* Continue using .delete-button and .clearfix as previously defined */

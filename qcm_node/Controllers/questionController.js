@@ -26,6 +26,16 @@ const addQuestion = async (req, res) => {
   }
 };
 
+const getQuestionsByQcmId = async (req, res) => {
+  try {
+    const qcmId = req.params.qcmId;
+    const questions = await Question.find({ idQcm: qcmId });
+    res.json(questions);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 module.exports = {
+  getQuestionsByQcmId,
   addQuestion,
 };

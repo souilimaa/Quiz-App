@@ -1,0 +1,24 @@
+/* NavbarAdmin.css */
+.navbar-admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Align items horizontally in the center */
+    align-items: center; /* Align items vertically in the center */
+    padding: 10px 0; /* Add some padding */
+  }
+  
+  .nav-item {
+    margin: 0 10px; /* Spacing between each link */
+  }
+  
+  .nav-item a {
+    font-size: 18px; /* Adjust font size as needed */
+    font-weight: bold;
+    text-decoration: none;
+    color: black; /* Change as per your color scheme */
+  }
+  
+  .nav-item a:hover {
+    color: blue; /* Change for hover effect */
+  }
+  

@@ -1,6 +1,7 @@
+// AdminDashboard.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import NavbarAdmin from '../Component/NavbarAdmin';
 
 const AdminDashboard = () => {
   const location = useLocation();
@@ -9,10 +10,8 @@ const AdminDashboard = () => {
 
   return (
     <div>
+      <NavbarAdmin userId={userId} />
       <h2>Quiz Dashboard</h2>
-      <Link to={`/add-quiz?userId=${userId}`}>Add Quiz</Link>
-      <Link to="/list-of-quizzes">List of Quizzes</Link>
-      <Link to="/logout">Logout</Link>
     </div>
   );
 };

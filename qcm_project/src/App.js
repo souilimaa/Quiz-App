@@ -7,13 +7,11 @@ import AddQuiz from './Component/AddQuiz';
 import EtudiantRegistration from './Component/EtudiantRegistration';
 import EtudiantHome from './Component/EtudiantHome';
 import Listquize from './Component/ListQuize'
-import QuizDeatils from './Component/QuizDetails'
+import QcmDetails from './Component/QcmDetails'
 function App() {
   return (
     <Router>
       <div>
-        {/* Your navigation here (e.g., <NavBar />) */}
-
         <Routes>
           <Route path="/Register" element={<EtudiantRegistration />} />
           <Route path="/login" element={<Login />} />
@@ -22,7 +20,7 @@ function App() {
           <Route path="/add-quiz" element={<AddQuiz/>} />
           <Route path="/list-of-quizzes"  element={<Listquize/>}/>
           <Route path="/logout" />
-          <Route path="/qcmdetails/:qcmId" element={<QuizDeatils/>} />
+          <Route path="/qcmdetails/:qcmId" element={<QcmDetails/>} />
 
           
            

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/AddQuiz.css';
 import { useLocation } from 'react-router-dom';
-
+import NavbarAdmin from '../Component/NavbarAdmin'; // Adjust the path based on your project structure
 
 const AddQuiz = () => {
     const location = useLocation();
@@ -30,6 +30,9 @@ const AddQuiz = () => {
         correctAnswer: -1 // No correct answer by default
 
     };
+
+    const [quizAdded, setQuizAdded] = useState(false);
+
 
     const [formData, setFormData] = useState(initialFormData);
     const [matieres, setMatieres] = useState([]);
@@ -92,9 +95,10 @@ const AddQuiz = () => {
         }
     };
     const onSubmit = async (e) => {
+        e.preventDefault();
+
         const { professeurId, titre, matiereId, description, duree, nombreQst, choixMultiple } = formData;
 
-        e.preventDefault();
         try {
             const qcmResponse = await fetch('http://localhost:5000/QCM/Admin/create-qcm', {
                 method: 'POST',
@@ -111,20 +115,18 @@ const AddQuiz = () => {
             const qcmDataResponse = await qcmResponse.json();
 
 
-            // Now that we have the QCM ID, we can add questions
-            // console.log('formData.questions:', formData.questions);
-
             for (let questionData of formData.questions) {
                 const questionText = questionData.ennonce; // Extracting 'ennonce' property
                 if (typeof questionText === 'string' && questionText.trim() !== '') {
                     await addQuestionToDB(questionData, qcmDataResponse._id);
                 }
             }
+            console.log("Setting quizAdded to true");
+
+            setQuizAdded(true); 
+            alert("Quiz added successfully!");
 
 
-
-
-            // Handle the successful creation of QCM and questions
         } catch (error) {
             console.error('Error:', error.message);
         }
@@ -246,11 +248,20 @@ const AddQuiz = () => {
             questions: updatedQuestions
         });
     };
+    // useEffect(() => {
+    //     // Log the current state after it's updated
+    //     console.log("quizAdded state:", quizAdded);
+    // }, [quizAdded]); 
 
     return (
         <div>
+        <NavbarAdmin />
+        <div className="add-quiz-container">
+
             <h2>Add QCM</h2>
+
             <form onSubmit={onSubmit}>
+
                 <div>
                     <label>Title:</label>
                     <input
@@ -379,6 +390,7 @@ const AddQuiz = () => {
                     <button type="submit">Create QCM</button>
                 </div>
             </form>
+        </div>
         </div>
     );
 };

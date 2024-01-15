@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import '../css/ListQuize.css';
+import NavbarAdmin from '../Component/NavbarAdmin'; // Adjust the path based on your project structure
 
 const ListQuize = () => {
   const [matieres, setMatieres] = useState([]);
@@ -53,6 +54,7 @@ const ListQuize = () => {
 
   return (
     <div>
+            <NavbarAdmin />
       <h1>QCM List</h1>
       {/* Matiere Dropdown */}
       <label htmlFor="matiereSelect">Select Matiere: </label>
