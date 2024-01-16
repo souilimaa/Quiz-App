@@ -18,7 +18,6 @@ const AddQuiz = () => {
         choixMultiple: false,
         questions: []
     };
-
     const initialQuestionData = {
         ennonce: '',
         choix: [
@@ -32,8 +31,6 @@ const AddQuiz = () => {
     };
 
     const [quizAdded, setQuizAdded] = useState(false);
-
-
     const [formData, setFormData] = useState(initialFormData);
     const [matieres, setMatieres] = useState([]);
     const [showNewMatiereInput, setShowNewMatiereInput] = useState(false);
@@ -100,6 +97,18 @@ const AddQuiz = () => {
         const { professeurId, titre, matiereId, description, duree, nombreQst, choixMultiple } = formData;
         const { questions} = formData;
 
+        if (
+            formData.titre.trim() === '' ||
+            formData.matiereId.trim() === '' ||
+            (formData.showNewMatiereInput && formData.nouvelleMatiere.trim() === '') ||
+            formData.description.trim() === '' ||
+            formData.duree === 0 ||  // Adjust as needed
+            formData.nombreQst === 0 ||  // Adjust as needed
+            formData.questions.some(question => question.ennonce.trim() === '' || question.choices.some(choice => choice.choixEnonce.trim() === ''))
+        ) {
+            alert('Please fill in all required fields.');
+            return; // Stop the function here if any field is empty
+        }
         try {
             const qcmResponse = await fetch('http://localhost:5000/QCM/Admin/create-qcm', {
                 method: 'POST',
@@ -113,6 +122,14 @@ const AddQuiz = () => {
                 throw new Error('Failed to create QCM');
             }
 
+          
+
+            if (formData.questions.length != formData.nombreQst) {
+                alert(`Please add exactly ${formData.nombreQst} questions.`);
+                return; // Stop the function here if the number of questions doesn't match
+            }
+           
+
             const qcmDataResponse = await qcmResponse.json();
 
 
@@ -122,6 +139,7 @@ const AddQuiz = () => {
                     await addQuestionToDB(questionData, qcmDataResponse._id);
                 }
             }
+           
             console.log("Setting quizAdded to true");
 
             setQuizAdded(true); 
@@ -199,7 +217,6 @@ const AddQuiz = () => {
         });
     };
 
-
     const addChoiceToDB = async (choiceText, questionId, isCorrect) => {
         try {
             const response = await fetch('http://localhost:5000/choices/add', {
@@ -233,6 +250,7 @@ const AddQuiz = () => {
             alert('You have reached the maximum number of questions.');
         }
     };
+    
     const handleQuestionChange = (e, questionIndex) => {
         const updatedText = e.target.value;
 
@@ -249,10 +267,7 @@ const AddQuiz = () => {
             questions: updatedQuestions
         });
     };
-    // useEffect(() => {
-    //     // Log the current state after it's updated
-    //     console.log("quizAdded state:", quizAdded);
-    // }, [quizAdded]); 
+    
 
     return (
         <div>
