@@ -4,7 +4,7 @@ function Matiere(props){
     return(
         <>
         <div className="Matierecard">
-        <Link to={"/QCMs/"+props.s._id}><strong>{props.s.nom}</strong></Link>
+        <Link to={"/QCMs/"+props.s._id+"/"+props.s.nom}><strong>{props.s.nom}</strong></Link>
         </div>
         </>
     )

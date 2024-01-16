@@ -7,4 +7,10 @@ qcmRouter.route('/createQcm')
 qcmRouter.route('/getQcms')
 .get(qcmController.getQcms)
 
+
+qcmRouter.route('/:id/:nom')
+.get(qcmController.getQcmsByMatiereId)
+module.exports=qcmRouter;
+qcmRouter.route('/:id')
+.get(qcmController.getQcmsById)
 module.exports=qcmRouter;

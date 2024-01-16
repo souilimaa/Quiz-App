@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.QcmCard{
+    background-color: #89BEDD;
+    padding: 10px;
+    width: 650px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+    border: 1px solid #285786;
+
+}
+.QcmCard div{
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
+.QcmCard button{
+    margin-top: 10px;
+    font-weight: bold;
+    height: 50px;
+    width: 200px;
+    color: red;
+}
+.myQst{
+    background-color: #89BEDD;
+    padding: 10px;
+    width: 650px;
+   margin: 20px;
+   margin-top: 60px;
+    border: 1px solid #285786;
+
+}
+.btn{
+    margin-top: 10px;
+    font-weight: bold;
+    height: 50px;
+    width: 200px;
+    color: red;
+}
+.inpt{
+    padding: 10px;
+}

@@ -5,7 +5,7 @@ import Matiere from "./Matiere";
 function EtudiantHome() {
   const [sujets, setSujets] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/QCM/getSujets")
+    fetch("http://localhost:5000/Matiere/getSujets")
       .then((res) => {
         return res.json();
       })
@@ -15,7 +15,7 @@ function EtudiantHome() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, []); 
 
   return (
     <>
