@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import NavbarAdmin from '../Component/NavbarAdmin'; // Adjust the path based on your project structure
+import NavbarAdmin from '../Component/NavbarAdmin'; 
 
 const QCMResultsComponent = () => {
     const [qcms, setQcms] = useState([]);
@@ -9,13 +9,12 @@ const QCMResultsComponent = () => {
         const fetchQCMResults = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/Answers/qcm-results');
-                console.log('QCMs from API:', response.data); // Log the data received
-                setQcms(response.data);
+                console.log('QCMs from API:', response.data); 
             } catch (error) {
                 console.error('Error fetching QCM results', error);
             }
         };
-    
+
         fetchQCMResults();
     }, []);
     console.log('QCMs in component:', qcms);

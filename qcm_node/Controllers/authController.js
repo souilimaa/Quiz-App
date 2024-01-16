@@ -16,9 +16,6 @@ async function loginUser(req, res) {
     return res.status(401).json({ message: 'Incorrect password' });
   }
 
-  // Logic after successful login
-  // You can include logic here to send different responses or redirect based on user type
-
   req.session.user = { id: user._id, userType: user instanceof Professeur ? 'Professeur' : 'Etudiant' };
 
   res.json({ userType: req.session.user.userType,userId: user._id,  message: `Welcome ${req.session.user.userType}` });

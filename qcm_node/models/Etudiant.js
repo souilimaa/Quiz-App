@@ -14,7 +14,7 @@ const EtudiantSchema = new Schema({
     required: true
   }
 }, {
-  timestamps: true // Enable timestamps
+  timestamps: true
 });
 
 const Etudiant = mongoose.model('Etudiant', EtudiantSchema);

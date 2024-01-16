@@ -1,6 +1,4 @@
-/* ListQuize.css */
 
-/* General styles */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
@@ -15,12 +13,10 @@ body {
   padding: 20px;
 }
 
-/* Header styles */
 h1 {
   color: #007bff;
 }
 
-/* Matiere Dropdown styles */
 label {
   display: block;
   margin-bottom: 10px;
@@ -55,7 +51,6 @@ li {
   border-radius: 4px;
 }
 
-/* Responsive styles */
 @media (max-width: 600px) {
   select {
     margin-bottom: 10px;

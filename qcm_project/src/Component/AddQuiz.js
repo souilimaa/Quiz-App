@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/AddQuiz.css';
 import { useLocation } from 'react-router-dom';
-import NavbarAdmin from '../Component/NavbarAdmin'; // Adjust the path based on your project structure
+import NavbarAdmin from '../Component/NavbarAdmin'; 
 
 const AddQuiz = () => {
     const location = useLocation();
@@ -38,7 +38,7 @@ const AddQuiz = () => {
     useEffect(() => {
         const fetchMatieres = async () => {
             try {
-                const response = await fetch('http://localhost:5000/matieres');
+                const response = await fetch('http://localhost:5000/Matiere');
                 if (!response.ok) {
                     throw new Error('Failed to fetch matieres');
                 }
@@ -72,7 +72,7 @@ const AddQuiz = () => {
     };
     const confirmNewMatiere = async () => {
         try {
-            const response = await fetch('http://localhost:5000/matieres/create', {
+            const response = await fetch('http://localhost:5000/Matiere/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const AddQuiz = () => {
 
             const newMatiere = await response.json();
             setMatieres((prevMatieres) => [...prevMatieres, newMatiere]);
-            setFormData((prevData) => ({ ...prevData, matiereId: newMatiere._id })); // Choisir automatiquement la nouvelle matière ajoutée
+            setFormData((prevData) => ({ ...prevData, matiereId: newMatiere._id })); 
         } catch (error) {
             console.error('Error:', error.message);
         }
@@ -95,19 +95,19 @@ const AddQuiz = () => {
         e.preventDefault();
 
         const { professeurId, titre, matiereId, description, duree, nombreQst, choixMultiple } = formData;
-        const { questions} = formData;
+        const { questions } = formData;
 
         if (
             formData.titre.trim() === '' ||
             formData.matiereId.trim() === '' ||
             (formData.showNewMatiereInput && formData.nouvelleMatiere.trim() === '') ||
             formData.description.trim() === '' ||
-            formData.duree === 0 ||  // Adjust as needed
-            formData.nombreQst === 0 ||  // Adjust as needed
+            formData.duree === 0 ||  
+            formData.nombreQst === 0 || 
             formData.questions.some(question => question.ennonce.trim() === '' || question.choices.some(choice => choice.choixEnonce.trim() === ''))
         ) {
             alert('Please fill in all required fields.');
-            return; // Stop the function here if any field is empty
+            return; 
         }
         try {
             const qcmResponse = await fetch('http://localhost:5000/QCM/Admin/create-qcm', {
@@ -122,27 +122,27 @@ const AddQuiz = () => {
                 throw new Error('Failed to create QCM');
             }
 
-          
+
 
             if (formData.questions.length != formData.nombreQst) {
                 alert(`Please add exactly ${formData.nombreQst} questions.`);
-                return; // Stop the function here if the number of questions doesn't match
+                return; 
             }
-           
+
 
             const qcmDataResponse = await qcmResponse.json();
 
 
             for (let questionData of formData.questions) {
-                const questionText = questionData.ennonce; // Extracting 'ennonce' property
+                const questionText = questionData.ennonce; 
                 if (typeof questionText === 'string' && questionText.trim() !== '') {
                     await addQuestionToDB(questionData, qcmDataResponse._id);
                 }
             }
-           
+
             console.log("Setting quizAdded to true");
 
-            setQuizAdded(true); 
+            setQuizAdded(true);
             alert("Quiz added successfully!");
 
 
@@ -153,12 +153,12 @@ const AddQuiz = () => {
 
     const addQuestionToDB = async (questionData, idQcm) => {
         try {
-            const response = await fetch('http://localhost:5000/Question/add', {
+            const response = await fetch('http://localhost:5000/Quiz/questions/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ idQcm, ennonce: questionData.ennonce }), // Ensure questionText is a string
+                body: JSON.stringify({ idQcm, ennonce: questionData.ennonce }), 
             });
 
             if (!response.ok) {
@@ -219,7 +219,7 @@ const AddQuiz = () => {
 
     const addChoiceToDB = async (choiceText, questionId, isCorrect) => {
         try {
-            const response = await fetch('http://localhost:5000/choices/add', {
+            const response = await fetch('http://localhost:5000/quiz/choices/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -233,7 +233,6 @@ const AddQuiz = () => {
             }
 
             const result = await response.json();
-            // Handle the result if needed
         } catch (error) {
             console.error('Error in addChoiceToDB:', error.message);
             throw error;
@@ -250,7 +249,7 @@ const AddQuiz = () => {
             alert('You have reached the maximum number of questions.');
         }
     };
-    
+
     const handleQuestionChange = (e, questionIndex) => {
         const updatedText = e.target.value;
 
@@ -267,158 +266,156 @@ const AddQuiz = () => {
             questions: updatedQuestions
         });
     };
-    
+
 
     return (
         <div>
-        <NavbarAdmin />
-        <div className="add-quiz-container">
+            <NavbarAdmin />
+            <div className="add-quiz-container">
 
-            <h2>Add QCM</h2>
+                <h2>Add QCM</h2>
 
-            <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit}>
 
-                <div>
-                    <label>Title:</label>
-                    <input
-                        type="text"
-                        name="titre"
-                        value={formData.titre}
-                        onChange={onChange}
-                        required
-
-                    />
-                </div>
-
-                <div>
-                    <label>Matiere:</label>
-                    <select
-                        name="matiereId"
-                        value={formData.matiereId}
-                        onChange={onChange}
-                        required
-                    >
-                        <option value="" disabled>Select a Matiere</option>
-                        {matieres.map((matiere) => (
-                            <option key={matiere._id} value={matiere._id}>
-                                {matiere.nom}
-                            </option>
-                        ))}
-                        <option value="nouvelleMatiere">Add a New Matiere</option>
-                    </select>
-                </div>
-
-                {showNewMatiereInput && (
                     <div>
-                        <label>New Matiere:</label>
+                        <label>Title:</label>
                         <input
                             type="text"
-                            name="nouvelleMatiere"
-                            value={formData.nouvelleMatiere}
+                            name="titre"
+                            value={formData.titre}
                             onChange={onChange}
                             required
+
                         />
-                        <button type="button" onClick={confirmNewMatiere}>
-                            Add
+                    </div>
+
+                    <div>
+                        <label>Matiere:</label>
+                        <select
+                            name="matiereId"
+                            value={formData.matiereId}
+                            onChange={onChange}
+                            required
+                        >
+                            <option value="" disabled>Select a Matiere</option>
+                            {matieres.map((matiere) => (
+                                <option key={matiere._id} value={matiere._id}>
+                                    {matiere.nom}
+                                </option>
+                            ))}
+                            <option value="nouvelleMatiere">Add a New Matiere</option>
+                        </select>
+                    </div>
+
+                    {showNewMatiereInput && (
+                        <div>
+                            <label>New Matiere:</label>
+                            <input
+                                type="text"
+                                name="nouvelleMatiere"
+                                value={formData.nouvelleMatiere}
+                                onChange={onChange}
+                                required
+                            />
+                            <button type="button" onClick={confirmNewMatiere}>
+                                Add
+                            </button>
+                        </div>
+
+                    )}
+                    <div>
+
+
+                        <label>Description:</label>
+                        <textarea
+                            name="description"
+                            value={formData.description}
+                            onChange={onChange}
+                        />
+                    </div>
+
+                    <div>
+                        <label>Duration (minutes):</label>
+                        <input
+                            type="number"
+                            name="duree"
+                            value={formData.duree}
+                            onChange={onChange}
+                            min="1"
+                        />
+                    </div>
+
+                    <div>
+                        <label>Number of Questions:</label>
+                        <input
+                            type="number"
+                            name="nombreQst"
+                            value={formData.nombreQst}
+                            onChange={onChange}
+                            min="1"
+                        />
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="choixMultiple"
+                                checked={formData.choixMultiple}
+                                onChange={onChange}
+                            />
+                            Multiple Choice
+                        </label>
+                    </div>
+
+                    {formData.questions.map((question, index) => (
+                        <div key={index}>
+                            <label>Question {index + 1}:</label>
+                            <input
+                                type="text"
+                                value={question.ennonce}
+                                onChange={(e) => handleQuestionChange(e, index)}
+                                required
+                            />
+                            {question.choices.map((choice, choiceIndex) => (
+                                <div key={choiceIndex}>
+                                    <input
+                                        type="text"
+                                        value={choice.choixEnonce}
+                                        onChange={(e) => handleChoiceChange(e, index, choiceIndex)}
+                                        required
+                                    />
+                                    {formData.choixMultiple ? (
+                                        <input
+                                            type="checkbox"
+                                            checked={question.correctAnswer === choiceIndex}
+                                            onChange={() => handleCorrectAnswerChange(index, choiceIndex)}
+                                        />
+                                    ) : (
+                                        <input
+                                            type="radio"
+                                            name={`question-${index}-correct-answer`}
+                                            checked={question.correctAnswer === choiceIndex}
+                                            onChange={() => handleCorrectAnswerChange(index, choiceIndex)}
+                                        />
+                                    )}
+                                    Correct
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+
+                    <div>
+                        <button type="button" onClick={addQuestion}>
+                            Add Question
                         </button>
                     </div>
 
-                )}
-                <div>
-
-
-                    <label>Description:</label>
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={onChange}
-                    />
-                </div>
-
-                <div>
-                    <label>Duration (minutes):</label>
-                    <input
-                        type="number"
-                        name="duree"
-                        value={formData.duree}
-                        onChange={onChange}
-                        min="1"
-                    />
-                </div>
-
-                <div>
-                    <label>Number of Questions:</label>
-                    <input
-                        type="number"
-                        name="nombreQst"
-                        value={formData.nombreQst}
-                        onChange={onChange}
-                        min="1"
-                    />
-                </div>
-
-                <div>
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="choixMultiple"
-                            checked={formData.choixMultiple}
-                            onChange={onChange}
-                        />
-                        Multiple Choice
-                    </label>
-                </div>
-
-                {formData.questions.map((question, index) => (
-    <div key={index}>
-        <label>Question {index + 1}:</label>
-        <input
-            type="text"
-            value={question.ennonce}
-            onChange={(e) => handleQuestionChange(e, index)}
-            required
-        />
-        {question.choices.map((choice, choiceIndex) => (
-            <div key={choiceIndex}>
-                <input
-                    type="text"
-                    value={choice.choixEnonce}
-                    onChange={(e) => handleChoiceChange(e, index, choiceIndex)}
-                    required
-                />
-                {formData.choixMultiple ? (
-                    // Render as checkbox for multiple choice
-                    <input
-                        type="checkbox"
-                        checked={question.correctAnswer === choiceIndex}
-                        onChange={() => handleCorrectAnswerChange(index, choiceIndex)}
-                    />
-                ) : (
-                    // Render as radio button for single choice
-                    <input
-                        type="radio"
-                        name={`question-${index}-correct-answer`}
-                        checked={question.correctAnswer === choiceIndex}
-                        onChange={() => handleCorrectAnswerChange(index, choiceIndex)}
-                    />
-                )}
-                Correct
+                    <div>
+                        <button type="submit">Create QCM</button>
+                    </div>
+                </form>
             </div>
-        ))}
-    </div>
-))}
-
-                <div>
-                    <button type="button" onClick={addQuestion}>
-                        Add Question
-                    </button>
-                </div>
-
-                <div>
-                    <button type="submit">Create QCM</button>
-                </div>
-            </form>
-        </div>
         </div>
     );
 };

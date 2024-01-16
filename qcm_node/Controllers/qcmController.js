@@ -1,60 +1,44 @@
- const mongoose=require('mongoose')
-const QCMModel=require('../models/QCM')
-<<<<<<< HEAD
-const MatiereModel=require('../models/Matiere')
-exports.getQcms=(req,res)=>{
-QCMModel.find({})
-.then((qcms)=>{
-    res.json({state:"success",data:qcms});
-})
-.catch((err)=>{
-    console.log(err)
-    res.json({state:"failed",error:err,qcms:[]})
-})
-}
-
-
-
-
-
-
-exports.getQcmsByMatiereId = (req,res) => {
-        QCMModel.find({ matiereId:req.params.id})
-            .then((qcms) => {
-                res.json({ state: "success", data: qcms});
-            })
-            .catch((err) => {
-                res.json({ state: "failed", error: err, qcms: [] });
-            });
-   
-}
-
-exports.getQcmsById=(req,res)=>{
-    QCMModel.find({_id:req.params.id})
-    .then((qcm)=>{
-        res.json({state:"success",qcm:qcm})
-    })
-    .catch(err=>{
-        res.json({state:"failed",qcm:""})
-    })
-}
-=======
+const mongoose = require('mongoose');
+const QCMModel = require('../models/QCM');
+const MatiereModel = require('../models/Matiere');
 const QuestionModel = require('../models/Question');
 const ChoixModel = require('../models/Choix');
 
+const getQcms = (req, res) => {
+  QCMModel.find({})
+    .then((qcms) => {
+      res.json({ state: "success", data: qcms });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({ state: "failed", error: err, qcms: [] });
+    });
+};
+
+const getQcmsByMatiereId = (req, res) => {
+  QCMModel.find({ matiereId: req.params.id })
+    .then((qcms) => {
+      res.json({ state: "success", data: qcms });
+    })
+    .catch((err) => {
+      res.json({ state: "failed", error: err, qcms: [] });
+    });
+};
+
+const getQcmsById = (req, res) => {
+  QCMModel.find({ _id: req.params.id })
+    .then((qcm) => {
+      res.json({ state: "success", qcm: qcm });
+    })
+    .catch(err => {
+      res.json({ state: "failed", qcm: "" });
+    });
+};
+
 const createQCM = async (req, res) => {
   try {
-    const {
-      professeurId,
-      titre,
-      matiereId,
-      description,
-      duree,
-      nombreQst,
-      choixMultiple
-    } = req.body;
+    const { professeurId, titre, matiereId, description, duree, nombreQst, choixMultiple } = req.body;
 
-    // Validate the request data here if needed
 
     const newQCM = new QCMModel({
       professeurId,
@@ -74,17 +58,7 @@ const createQCM = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-const getQcms = (req, res) => {
-  QCMModel.find({})
-    .then((qcms) => {
-      res.json({ state: "success", data: qcms });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({ state: "failed", error: err, qcms: [] });
-    });
-};
- 
+
 const getQuizzesByMatiere = async (req, res) => {
   try {
     const matiereId = req.params.matiereId;
@@ -93,7 +67,8 @@ const getQuizzesByMatiere = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
+
 const getQcmById = async (req, res) => {
   try {
     const { qcmId } = req.params;
@@ -110,31 +85,32 @@ const getQcmById = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 const deleteQCM = async (req, res) => {
   try {
-      const qcmId = req.params.qcmId;
-      
-      // Delete Choices linked to Questions of this QCM
-      await ChoixModel.deleteMany({ idQuestion: { $in: (await QuestionModel.find({ idQcm: qcmId })).map(q => q._id) } });
+    const qcmId = req.params.qcmId;
 
-      // Delete Questions linked to this QCM
-      await QuestionModel.deleteMany({ idQcm: qcmId });
+    // Delete Choices linked to Questions of this QCM
+    await ChoixModel.deleteMany({ idQuestion: { $in: (await QuestionModel.find({ idQcm: qcmId })).map(q => q._id) } });
 
-      // Delete the QCM
-      await QCMModel.findByIdAndDelete(qcmId);
+    // Delete Questions linked to this QCM
+    await QuestionModel.deleteMany({ idQcm: qcmId });
 
-      res.status(200).send({ message: 'QCM and related data deleted successfully' });
+    // Delete the QCM
+    await QCMModel.findByIdAndDelete(qcmId);
+
+    res.status(200).send({ message: 'QCM and related data deleted successfully' });
   } catch (error) {
-      res.status(500).send({ message: error.message });
+    res.status(500).send({ message: error.message });
   }
 };
 
-
 module.exports = {
-  deleteQCM,
-  createQCM,
   getQcms,
-  getQcmById,
+  getQcmsByMatiereId,
+  getQcmsById,
+  createQCM,
   getQuizzesByMatiere,
+  getQcmById,
+  deleteQCM,
 };
->>>>>>> df663c6d4e5e17cf61b09a439b5b5e58a59f43e7

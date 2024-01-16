@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import '../css/QcmDetails.css'
-import NavbarAdmin from '../Component/NavbarAdmin'; // Adjust the path based on your project structure
+import NavbarAdmin from '../Component/NavbarAdmin'; 
 
 const QcmDetails = () => {
   const { qcmId } = useParams();
@@ -25,7 +25,7 @@ const QcmDetails = () => {
 
     const fetchQuestions = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/Question/getQuestionsByQcmId/${qcmId}`);
+        const response = await fetch(`http://localhost:5000/Quiz/questions/getQuestionsByQcmId/${qcmId}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch questions: HTTP status ${response.status}`);
         }
@@ -38,7 +38,7 @@ const QcmDetails = () => {
 
     const fetchChoicesForQuestion = async (questionId) => {
       try {
-        const response = await fetch(`http://localhost:5000/choices/choices/${questionId}`);
+        const response = await fetch(`http://localhost:5000/quiz/choices/choices/${questionId}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch choices: HTTP status ${response.status}`);
         }
@@ -77,22 +77,20 @@ const QcmDetails = () => {
         throw new Error(`Failed to delete QCM: HTTP status ${response.status}`);
       }
       console.log('Quiz deleted successfully');
-      // Optionally, redirect or update the state to reflect the deletion
       setQcmDetails(null);
-      setQuestions([]); 
+      setQuestions([]);
     } catch (error) {
       console.error('Error deleting the quiz:', error);
     }
   };
 
   const updateQuiz = () => {
-    // Redirect to the update page 
     console.log('Navigate to update quiz page');
   };
 
   return (
     <div>
-            <NavbarAdmin />
+      <NavbarAdmin />
 
       <h1>QCM Details</h1>
       {qcmDetails ? (
@@ -107,7 +105,6 @@ const QcmDetails = () => {
             <button className="delete-button" onClick={deleteQuiz}>
               Delete Quiz
             </button>
-            {/* ... other content ... */}
           </div>
 
           <h3>Questions</h3>

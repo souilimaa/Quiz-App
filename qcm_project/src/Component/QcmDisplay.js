@@ -25,20 +25,24 @@ function QcmDisplay() {
       }); 
 
     fetch("http://localhost:5000/Quiz/questions/" + qcmId)
+    
       .then((response) => response.json())
       .then((data) => setQuestions(data.questions));
+      console.log("Questions:", questions); // Debugging line
+
   }, []);
 
   useEffect(() => {
-    if (questions.length > 0) {
-      const currentQuestionId = questions[currentQuestionIndex]._id;
-
+    const currentQuestionId = questions[currentQuestionIndex]?._id;
+  
+    if (currentQuestionId) {
       fetch("http://localhost:5000/quiz/choices/" + currentQuestionId)
         .then((response) => response.json())
-        .then((data) => setChoices(data.choixes));
+        .then((data) => setChoices(data.choixes))
+        .catch((error) => console.error("Error fetching choices:", error));
     }
   }, [currentQuestionIndex, questions]);
-
+  
   const handleEnvoyerQuizClick = () => {
     setQuizFinished(true);
     setMessage("");
@@ -171,4 +175,3 @@ function QcmDisplay() {
   }
   
   export default QcmDisplay;
-  

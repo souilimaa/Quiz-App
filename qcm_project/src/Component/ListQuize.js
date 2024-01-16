@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom'; 
 import '../css/ListQuize.css';
-import NavbarAdmin from '../Component/NavbarAdmin'; // Adjust the path based on your project structure
+import NavbarAdmin from '../Component/NavbarAdmin';
 
 const ListQuize = () => {
   
@@ -13,7 +13,7 @@ const ListQuize = () => {
   useEffect(() => {
     const fetchMatieres = async () => {
       try {
-        const response = await fetch('http://localhost:5000/matieres/');
+        const response = await fetch('http://localhost:5000/Matiere/');
         if (!response.ok) {
           throw new Error(`Failed to fetch matieres: HTTP status ${response.status}`);
         }
@@ -27,7 +27,6 @@ const ListQuize = () => {
     fetchMatieres();
   }, []);
 
-  // Fetch QCM titles for the selected Matiere
   useEffect(() => {
     const fetchQcmTitles = async () => {
       if (selectedMatiere) {
@@ -57,7 +56,6 @@ const ListQuize = () => {
     <div>
             <NavbarAdmin />
       <h1>QCM List</h1>
-      {/* Matiere Dropdown */}
       <label htmlFor="matiereSelect">Select Matiere: </label>
       <select id="matiereSelect" onChange={handleMatiereChange}>
         <option value="">Select Matiere</option>
@@ -66,7 +64,6 @@ const ListQuize = () => {
         ))}
       </select>
 
-      {/* QCM Titles */}
       {qcmTitles.length > 0 && (
         <div>
           <h2>QCM Titles for {selectedMatiere ? selectedMatiere.nom : 'selected Matiere'}</h2>

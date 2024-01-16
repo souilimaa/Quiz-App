@@ -1,18 +1,6 @@
 const Matiere = require('../models/Matiere');
 
-<<<<<<< HEAD
-exports.getMatieres=(req,res)=>{
-    matiereModel.find({})
-    .then(matieres=>{
-        res.json({state:"success",data:matieres})
-    })
-    .catch(err=>{
-        res.json({state:"failed",data:[]})
-    })
-}
 
-=======
-// Get all matieres
 const getAllMatieres = async (req, res) => {
   try {
     const matieres = await Matiere.find();
@@ -23,7 +11,6 @@ const getAllMatieres = async (req, res) => {
   }
 };
 
-// Create a new matiere
 const createMatiere = async (req, res) => {
   const { nom } = req.body;
 
@@ -59,4 +46,3 @@ module.exports = {
   getAllMatieres,
   createMatiere,
 };
->>>>>>> df663c6d4e5e17cf61b09a439b5b5e58a59f43e7

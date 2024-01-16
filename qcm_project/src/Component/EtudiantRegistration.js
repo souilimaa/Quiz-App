@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom to handle redirection
+import { Link } from 'react-router-dom'; 
 
 import ('../css/EtudiantRegistration.css');
 
@@ -37,11 +37,11 @@ const EtudiantRegistration = () => {
             }
 
             const responseData = await response.json();
-            console.log(responseData); // Or handle the response as needed
+            console.log(responseData);
                       alert('Etudiant registered successfully!');
         } catch (error) {
             console.error(error.message);
-            setError(error.message); // Show error message to user
+            setError(error.message); 
         }
     };
 

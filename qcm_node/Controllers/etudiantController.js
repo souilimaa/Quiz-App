@@ -1,6 +1,5 @@
-const Etudiant = require('../models/Etudiant'); // Adjust path as necessary
-const bcrypt = require('bcryptjs'); // For password hashing
-
+const Etudiant = require('../models/Etudiant'); 
+const bcrypt = require('bcryptjs'); 
 
 async function etudiantRegister(req, res) {
   try {
@@ -38,5 +37,4 @@ async function etudiantRegister(req, res) {
 
 module.exports = {
   etudiantRegister,
-  // other exports here
 };

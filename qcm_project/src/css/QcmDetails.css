@@ -51,20 +51,12 @@ div {
     background-color: #eee;
   }
   
-  /* Loading text style */
   .loading {
     text-align: center;
     font-size: 1.2em;
     margin-top: 20px;
   }
-  /* QcmDetails.css */
-/* ... (your existing styles) */
-
-/* QcmDetails.css */
-/* ... (your existing styles) */
-
-/* QcmDetails.css */
-/* ... (your existing styles) ... */
+  
 
 .delete-button {
   background-color: #e74c3c; /* red color */
@@ -83,14 +75,11 @@ div {
   background-color: #c0392b; /* darker shade of red for hover effect */
 }
 
-/* Reset float */
 .clearfix::after {
   content: "";
   clear: both;
   display: table;
 }
-/* QcmDetails.css */
-/* ... (your existing styles) ... */
 
 .update-button {
   background-color: #3498db; /* blue color */
@@ -102,11 +91,10 @@ div {
   margin-left: 10px;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  float: right; /* aligns the button to the right */
+  float: right; 
 }
 
 .update-button:hover {
-  background-color: #2980b9; /* darker shade of blue for hover effect */
+  background-color: #2980b9; 
 }
 
-/* Continue using .delete-button and .clearfix as previously defined */

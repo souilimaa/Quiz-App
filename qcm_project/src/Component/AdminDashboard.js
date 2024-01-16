@@ -1,4 +1,3 @@
-// AdminDashboard.js
 import React from 'react';
 import NavbarAdmin from '../Component/NavbarAdmin';
 

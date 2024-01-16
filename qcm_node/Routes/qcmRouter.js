@@ -9,13 +9,8 @@ qcmRouter.route('/getQcmById/:qcmId').get(qcmController.getQcmById);
 qcmRouter.route('/:qcmId').delete(qcmController.deleteQCM);
 
 
-<<<<<<< HEAD
-qcmRouter.route('/:id/:nom')
-.get(qcmController.getQcmsByMatiereId)
+qcmRouter.route('/:id/:nom').get(qcmController.getQcmsByMatiereId)
+qcmRouter.route('/:id').get(qcmController.getQcmsById)
 module.exports=qcmRouter;
-qcmRouter.route('/:id')
-.get(qcmController.getQcmsById)
-module.exports=qcmRouter;
-=======
+
 module.exports = qcmRouter;
->>>>>>> df663c6d4e5e17cf61b09a439b5b5e58a59f43e7
