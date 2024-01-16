@@ -9,3 +9,5 @@ const etudiantAnswerSchema = new mongoose.Schema({
 const EtudiantAnswerModel = mongoose.model('EtudiantAnswer', etudiantAnswerSchema);
 
 module.exports = EtudiantAnswerModel;
+
+

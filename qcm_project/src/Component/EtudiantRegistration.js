@@ -46,8 +46,9 @@ const EtudiantRegistration = () => {
     };
 
     return (
-        <div>
-            <h2>Register </h2>
+        
+        <div className="etudiant-registration">
+        <h2>Register </h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={e => onSubmit(e)}>
                 <div>

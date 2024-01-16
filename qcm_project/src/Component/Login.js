@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom to handle the redirection
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Login.css';
 
 const Login = () => {
@@ -7,7 +7,8 @@ const Login = () => {
     email: '',
     password: '',
   });
-  const [error, setError] = useState(''); // State for storing error message
+  const [error, setError] = useState('');
+  const [userId, setUserId] = useState('');
 
   const { email, password } = formData;
 
@@ -15,7 +16,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // Clear any existing errors
+    setError('');
 
     const config = {
       method: 'POST',
@@ -32,22 +33,31 @@ const Login = () => {
         throw new Error(errorResponse.message || 'Login failed');
       }
       const responseData = await response.json();
-
-      // Redirect based on user type
-      if (responseData.userType === 'Professeur') {
-        window.location.href = '/admin-dashboard';
-      } else if (responseData.userType === 'Etudiant') {
-        window.location.href = '/user-home';
-      }
+      console.log("Response Data: ", responseData); // Log to check the response
+      setUserId(responseData.userId);
+      
+      localStorage.setItem('userData', JSON.stringify(responseData));
     } catch (error) {
       console.error(error.message);
-      setError(error.message); // Set error message
+      setError(error.message);
     }
   };
 
+  useEffect(() => {
+    if (userId) {
+      const storedData = localStorage.getItem('userData');
+      if (storedData) {
+        const userData = JSON.parse(storedData);
+        const redirectUrl = userData.userType === 'Professeur' ? '/admin-dashboard' : '/user-home';
+        window.location.href = `${redirectUrl}?userId=${userData.userId}`;
+      }
+    }
+  }, [userId]);
+  
+
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login-container">
+    <h2>Login</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={(e) => onSubmit(e)}>
         <div>

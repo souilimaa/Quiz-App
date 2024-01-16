@@ -21,7 +21,7 @@ async function loginUser(req, res) {
 
   req.session.user = { id: user._id, userType: user instanceof Professeur ? 'Professeur' : 'Etudiant' };
 
-  res.json({ userType: req.session.user.userType, message: `Welcome ${req.session.user.userType}` });
+  res.json({ userType: req.session.user.userType,userId: user._id,  message: `Welcome ${req.session.user.userType}` });
 }
 
 module.exports = {
