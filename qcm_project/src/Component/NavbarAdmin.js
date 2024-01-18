@@ -7,7 +7,7 @@ const NavbarAdmin = ({ userId }) => {
   const handleLogout = () => {
     // Perform logout actions if needed (e.g., clear user session)
     // Redirect the user to the login page
-    navigate('/login');
+    navigate('/');
   };
 
   return (

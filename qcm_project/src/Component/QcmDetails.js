@@ -12,7 +12,7 @@ const QcmDetails = () => {
   useEffect(() => {
     const fetchQcmDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/QCM/getQcmById/${qcmId}`);
+        const response = await fetch(`http://localhost:5000/Quiz/questions/${qcmId}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch QCM details: HTTP status ${response.status}`);
         }

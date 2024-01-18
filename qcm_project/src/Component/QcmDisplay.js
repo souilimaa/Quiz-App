@@ -27,7 +27,7 @@ function QcmDisplay() {
     fetch("http://localhost:5000/Quiz/questions/" + qcmId)
     
       .then((response) => response.json())
-      .then((data) => setQuestions(data.questions));
+      .then((data) => setQuestions(data));
       console.log("Questions:", questions); // Debugging line
 
   }, []);

@@ -9,7 +9,7 @@ return(
     <>
 
     <Routes>
-        <Route path="/" element={<EtudiantHome/>}
+        <Route path="/userHome" element={<EtudiantHome/>}
         ></Route>
        <Route path="/QCMs/:id/:nom" element={<ListQcm/>}>
         </Route>

@@ -2,18 +2,7 @@
 const QuestionModel=require('../models/Question')
 const mongoose=require('mongoose')
 
-exports.getQuestionsByQCMId=(req,res)=>{
-    QuestionModel.find({idQcm:req.params.qcmId})
-    .then(qst=>{
- 
-     res.json({state:"success",questions:qst})
- 
-    })
-    .catch(err=>{
-     res.json({ state: "failed", error: err, questions: [] });
- 
-    })
-}
+
 
 const addQuestion = async (req, res) => {
   try {
@@ -46,7 +35,7 @@ const getQuestionsByQcmId = async (req, res) => {
     res.status(500).send(error);
   }
 };
-module.exports = {
+module.exports = { 
   getQuestionsByQcmId,
   addQuestion,
 };

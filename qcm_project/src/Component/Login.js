@@ -48,7 +48,7 @@ const Login = () => {
       const storedData = localStorage.getItem('userData');
       if (storedData) {
         const userData = JSON.parse(storedData);
-        const redirectUrl = userData.userType === 'Professeur' ? '/admin-dashboard' : '/';
+        const redirectUrl = userData.userType === 'Professeur' ? '/admin-dashboard' : '/userHome';
         window.location.href = `${redirectUrl}?userId=${userData.userId}`;
       }
     }

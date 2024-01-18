@@ -16,7 +16,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/Register" element={<EtudiantRegistration />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/add-quiz" element={<AddQuiz/>} />
           <Route path="/list-of-quizzes"  element={<Listquize/>}/>
